@@ -9,6 +9,8 @@ import crypto from "crypto";
 import session from "express-session"
 import MongoStore from 'connect-mongo';
 
+import setupSwagger from "./docs/swaggerSetup.js"
+
 // import dbConnect from './utils/db.js';
 
 dotenv.config();
@@ -25,6 +27,9 @@ console.log("Mongo URI", process.env.MONGO_URL);
 
 app.use(cookieParser());
 
+
+// swagger set up
+setupSwagger(app)
 
 
 
