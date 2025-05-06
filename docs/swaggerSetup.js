@@ -18,7 +18,7 @@ export default function setupSwagger(app) {
         },
         servers: [
             {
-                url: "http://localhost:3077",
+                url: "http://localhost:3077/",
                 description: "Local Server",
             },
         ],
@@ -30,20 +30,34 @@ export default function setupSwagger(app) {
             }
         ],
 
+        // components: {
+        //     securitySchemes: {
+        //         // BearerAuth: {
+        //         //     type: "apiKey",
+        //         //     name: "Authorization",
+        //         //     in: "header",
+        //         //     description: 'Enter JWT token as "Bearer <token>"',
+        //         // },
+
+        //         // ddd jj
+        //     },
+        // },
+
         components: {
             securitySchemes: {
-                // BearerAuth: {
-                //     type: "apiKey",
-                //     name: "Authorization",
-                //     in: "header",
-                //     description: 'Enter JWT token as "Bearer <token>"',
-                // },
-
-                // ddd jjj
-
-
+                cookieAuth: {
+                    type: "apiKey",
+                    in: "cookie",
+                    //  name: "sachinSession", //
+                    name: "sessionId", // This must match your actual cookie name
+                },
             },
         },
+        security: [
+            {
+                cookieAuth: [],
+            },
+        ]
     };
 
     const swaggerOptions = {
@@ -75,5 +89,22 @@ export default function setupSwagger(app) {
         })
     );
 
-    console.log("Swagger docs available at http://localhost:3033/docs");
+    console.log("Swagger docs available at http://localhost:3077/docs");
 }
+
+
+
+
+/* 
+
+Set-Cookie: sachinSession=s%3AcOECBuClGP0tbfwzPp1CHMvKf4c2OlYb.jWQc98%2FCcSbQOMrSB2ByCGCbttgmcQNrbt2910SMKgE; Path=/;
+That means:
+
+**Cookie Name**: sachinSession
+
+**Cookie Value**: s%3AcOECBuClGP0tbfwzPp1CHMvKf4c2OlYb.jWQc98%2FCcSbQOMrSB2ByCGCbttgmcQNrbt2910SMKgE
+
+
+
+
+*/
