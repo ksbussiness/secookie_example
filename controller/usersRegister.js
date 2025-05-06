@@ -12,6 +12,7 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
+// this is teh user registartion file 
 
 
 export const register = async (req, res) => {
